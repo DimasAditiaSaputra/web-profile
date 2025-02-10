@@ -9,35 +9,33 @@
 
 body {
   overflow-x: hidden;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 /* Hero Header */
 .hero-header {
   width: 100%;
-  height: 100%;
   min-height: 100vh;
   background: #371b1b;
-  /* background-image: url("./images/download (2).jpeg"); */
-  /* background-position: center; */
-  /* background-size: cover; */
+  position: relative;
 }
 
 /* Wrapper */
 .wrapper {
-  width: 1280px;
-  max-width: 95%;
+  width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
 /* Header */
 header {
-  padding: 40px 0 30px;
+  padding: 20px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
 }
 
 /* Logo */
@@ -67,13 +65,17 @@ header {
 }
 
 /* Navigation */
+nav {
+  position: relative;
+}
+
 nav .togglebtn {
   width: 35px;
   height: 35px;
-  position: absolute;
-  top: 45px;
-  right: 3%;
-  z-index: 5;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
   cursor: pointer;
   display: none;
 }
@@ -84,7 +86,7 @@ nav .togglebtn span {
   margin: 5px 0;
   width: 100%;
   height: 3px;
-  transition: transform 0.3s, opacity 0.3s;
+  transition: 0.3s ease;
 }
 
 nav .navlinks {
@@ -105,22 +107,25 @@ nav .navlinks li a {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding-top: 4rem;
+  padding: 2rem 0;
+  gap: 2rem;
 }
 
 /* Hero Image */
 .hero-pic {
-  width: 320px;
-  height: 320px;
+  width: 280px;
+  height: 280px;
   border-radius: 50%;
   overflow: hidden;
   border: 15px solid #444;
   box-shadow: 5px 7px 25px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
 }
 
 .hero-pic img {
-  height: 100%;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.5s;
 }
 
@@ -131,8 +136,7 @@ nav .navlinks li a {
 /* Hero Text */
 .hero-text {
   max-width: 500px;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 }
 
 .hero-text h5 {
@@ -147,16 +151,21 @@ nav .navlinks li a {
 
 .hero-text h1 {
   color: #007ced;
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  word-wrap: break-word;
 }
 
 .hero-text p {
   color: #e5e5e5;
+  margin-top: 1rem;
 }
 
 /* Button Group */
 .btn-group {
-  margin: 45px 0;
+  margin: 2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .btn-group .btn {
@@ -164,7 +173,6 @@ nav .navlinks li a {
   color: #fff;
   background-color: #333;
   padding: 12px 25px;
-  margin: 5px 0 5px 7px;
   border-radius: 30px;
   border: 2px solid #e5e5e5;
   box-shadow: 0 10px 10px -8px rgba(0, 0, 0, 0.78);
@@ -174,10 +182,14 @@ nav .navlinks li a {
   border-color: #007ced;
 }
 
+.hero-text .social {
+  display: flex;
+  gap: 1rem;
+}
+
 .hero-text .social i {
   color: #e5e5e5;
   font-size: 18px;
-  margin-right: 10px;
   transition: transform 0.5s, color 0.5s;
 }
 
@@ -192,50 +204,35 @@ nav .navlinks li a {
     display: block;
   }
 
-  .click {
-    top: 45px;
-  }
-
-  .click span {
-    position: absolute;
-    margin-top: 12px;
-  }
-
   .click span:first-child {
-    transform: rotate(-40deg);
+    transform: rotate(-45deg) translate(-5px, 6px);
   }
 
   .click span:nth-child(2) {
     opacity: 0;
-    margin: 0;
   }
 
   .click span:last-child {
-    transform: rotate(45deg);
-    top: 0;
+    transform: rotate(45deg) translate(-5px, -6px);
   }
 
   nav .navlinks {
-    position: absolute;
-    top: 110px;
+    position: fixed;
+    top: 0;
     right: -100%;
-    width: 60%;
+    width: 70%;
+    max-width: 300px;
     height: 100vh;
     background: #371b1b;
-    z-index: 3;
-    box-shadow: 5px 13px 30px rgba(0, 0, 0, 0.1);
-    transition: right 0.5s;
-    padding: 25px 0;
+    z-index: 999;
+    transition: 0.3s ease;
+    padding: 80px 20px 20px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
   }
 
   nav .navlinks li {
     display: block;
-    text-align: center;
-  }
-
-  nav .navlinks li a {
-    display: block;
-    margin-bottom: 15px;
+    margin: 15px 0;
   }
 
   nav .navlinks.open {
@@ -246,10 +243,35 @@ nav .navlinks li a {
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
-    padding-top: 2rem;
+    text-align: center;
   }
 
   .hero-text {
-    padding: 40px 0;
+    padding: 20px 0;
+  }
+
+  .btn-group, .social {
+    justify-content: center;
+  }
+
+  .logo .logo-text {
+    font-size: 20px;
+  }
+
+  .hero-pic {
+    width: 240px;
+    height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 0 15px;
+  }
+
+  .hero-pic {
+    width: 200px;
+    height: 200px;
+    border-width: 10px;
   }
 }
