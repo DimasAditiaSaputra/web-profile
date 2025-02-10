@@ -9,13 +9,14 @@
 
 body {
   overflow-x: hidden;
+  height: 100vh;
 }
 
 /* Hero Header */
 .hero-header {
   width: 100%;
   height: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background: #371b1b;
   /* background-image: url("./images/download (2).jpeg"); */
   /* background-position: center; */
